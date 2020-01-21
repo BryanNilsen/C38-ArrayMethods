@@ -228,7 +228,7 @@ const playlist = [
     "length": 366
   },
   {
-    "song": "The Hellion / Electric Eye",
+    "song": "The SHellion / Electric Eye",
     "artist": "Judas Priest",
     "yearReleased": "1982",
     "length": 219
@@ -239,12 +239,9 @@ const playlist = [
 const bandsList = document.querySelector("#bands")
 
 // ForEach
-playlist.forEach(song => console.log(`${song.song} - by ${song.artist}`));
+// playlist.forEach(item => console.log(`${item.song} - by ${item.artist}`));
 
-playlist.forEach(song =>
-  bandsList.innerHTML +=
-  `<li><strong>${song.song}</strong> - ${song.artist} - ${song.yearReleased} <em>(${song.length} seconds)</em> </li>`
-);
+playlist.forEach(song => bandsList.innerHTML += `<li><strong>${song.song}</strong> - ${song.artist} - ${song.yearReleased} <em>(${song.length} seconds)</em> </li>`);
 
 
 
@@ -257,13 +254,12 @@ const hellSong = playlist.find(song => song.song.toLowerCase().includes("hell"))
 console.log('Song with "hell" in title: ', hellSong);
 
 
-
 // show results if using Filter instead of Find like above
-const hellSongs = playlist.filter(song => song.song.toLowerCase().includes("hell"));
+const hellSongs = playlist.filter(song => song.song.toLowerCase().includes(" hell"));
 console.log('Songs with "hell" in title: ', hellSongs);
 
 
-// Filter with/without Sort
+// Filter with / without Sort (read the docs on .sort and don't freak out)
 const filteredList = playlist
   .filter(song => song.length > 400)
 
