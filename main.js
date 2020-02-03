@@ -21,7 +21,7 @@ const secondsToTime = (secs) => {
 
 // * the forEach() method doesn’t actually return anything (undefined). It simply calls a provided function on each element in your array. This callback is allowed to mutate the calling array.
 
-const rock = playlist.forEach(song => `${song.song.toUpperCase()} ROCKS`)
+const rock = playlist.forEach((song) => `${song.song.toUpperCase()} ROCKS`)
 // console.log('rock: ', rock);  // --> returns undefined
 
 
@@ -33,11 +33,25 @@ const rock = playlist.forEach(song => `${song.song.toUpperCase()} ROCKS`)
 // * Generally, map is faster than foreach
 
 // * In this case, I want to create a new array of HTML Representations to render to the DOM with the index of that item included in the ID
+
 const htmlRep = playlist.map((song, index) => `<div id="song--${index}">${song.song} - <em>${song.artist}</em></div>`)
 // console.log('htmlRep: ', htmlRep);
 
 // * I can then use that array however I want... in this case, I can iterate over it and render it to the DOM
 // htmlRep.forEach(rep => mappedList.innerHTML += rep)
+
+
+// pass in a function as an argument:
+function makeHTML(item) {
+  return `<h2>${item.song}</h2>`
+}
+
+function renderToDOM(item) {
+  mappedList.innerHTML += item
+}
+
+const playlistAsHTML = playlist.map(makeHTML)
+// playlistAsHTML.forEach(renderToDOM)
 
 
 
@@ -69,9 +83,9 @@ const justArtistsWithShortNames = new Set(playlist.map(song => song.artist).filt
 // * The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
 
 const array = [3, 12, 18, 4, 36, 47]
-console.log("Sum Array:", array.reduce((accumulator, currentValue) => accumulator + currentValue))
-console.log("Difference Array:", array.reduce((accumulator, currentValue) => accumulator - currentValue))
-console.log("Difference Array (Adjusted with Initial Value):", array.reduce((accumulator, currentValue) => accumulator - currentValue, 0))
+// console.log("Sum Array:", array.reduce((accumulator, currentValue) => accumulator + currentValue))
+// console.log("Difference Array:", array.reduce((accumulator, currentValue) => accumulator - currentValue))
+// console.log("Difference Array (Adjusted with Initial Value):", array.reduce((accumulator, currentValue) => accumulator - currentValue, 0))
 
 
 // * Let's get the total length of the playlist by reducing the song length to one number
@@ -94,11 +108,11 @@ const colorsArray = ["yellow", "blue", "orange", "red", "indigo", "green", "viol
 // console.log('Sorted Colors Array:', colorsArray.sort())
 
 const numbersArray = [1, 4, 11, 8, 23, 7, 66, 90, 123]
-// console.log('Sorted Numbers Array:', numbersArray.sort())
+// console.log('Sorted Numbers Array (default):', numbersArray.sort())
 // WTF is up with this sorting??
 
-// console.log('Sorted Numbers Array:', numbersArray.sort((a, b) => a - b))
-// console.log('Sorted Numbers Array:', numbersArray.sort((a, b) => b - a))
+// console.log('Sorted Numbers Array (with Compare Function ):', numbersArray.sort((a, b) => a - b))
+// console.log('Sorted Numbers Array (with Compare Function ):', numbersArray.sort((a, b) => b - a))
 
 
 // * Let's get an array of just song titles and lengths, filter out only the songs that start with an 'h', and sort them by the longest song first
